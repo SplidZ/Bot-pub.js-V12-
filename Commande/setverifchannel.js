@@ -13,7 +13,7 @@ module.exports = {
             .setTitle('Ajout d\'un salon')
             .setColor('#2f3136')
             .setDescription('Hey ! Bienvenue dans le menu de setup du salon de vérification des publicité. Envoyer ci-dessous la mention du salon voulu.\n\n*`Si vous souhaitez quittez, écrivez cancel à la place.`*')
-            .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
     )
 
     let error = false;
@@ -32,7 +32,7 @@ module.exports = {
             .setTitle('<:erreur:793859889444945970>・Erreur...')
             .setColor('#2f3136')
             .setDescription("Vous n'avez pas entrer de salon. Annulation...")
-            .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
         );
         return;
     });
@@ -48,7 +48,7 @@ module.exports = {
                 .setTitle('<:erreur:793859889444945970>・Erreur...')
                 .setColor('#2f3136')
                 .setDescription('Oops, on dirait que ce salon est introuvable. Assurez vous que je puisse voir le salon, ainsi que je puisse écrire dedans.')
-                .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
         )
     }
 
@@ -66,7 +66,7 @@ module.exports = {
                 .setTitle('<:erreur:793859889444945970>・Erreur...')
                 .setColor('#2f3136')
                 .setDescription('Ce salon ne peut pas être un salon publicitaire et un salon de pub en même temps.')
-                .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
         )
     }
 
@@ -76,7 +76,7 @@ module.exports = {
             .setTitle('<a:fleche:782582461510582312>・Succès')
             .setColor('#2f3136')
             .setDescription('Le salon de vérification des publicité est désormais <#' + salon.id + '>')
-            .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
     )
     salon.send(`**__Hey !__**\n\nVoici le salon de vérification des publicités. Pour vérifier une publicité, suivez le parterne de réaction ci-dessous.\n\n> \`✅\`・Accepter la publicité\n> \`❌\`・Refuser la publicité pour les raison suivantes :\n\n> \`1️⃣\`・**Contenue à caractère pornographique**\n> \`2️⃣\`・**Publicité pour un serveur invite reward.**\n> \`3️⃣\`・**Contenue à caractère raciste, haineux ou autre.**\n> \`4️⃣\`・**Lien d'invitation invalide.**\n> \`5️⃣\`・**Pub dans le mauvais salon.**\n> \`6️⃣\`・**Publicité sans description**\n> \`📛\`・**Mettre sa propre raison** *(Il faut avoir les mp ouverts)*\n\n:warning:・Si le bot ne met pas les réactions, c'est qu'il se fait rate limited *(Il en a mit trop)*. Vous devrez donc les ajouter à la main, mais pas d'inquiétude, ça marche pareil. Quand ça arrive, ça dure quelques dizaines de minutes.`)
 
