@@ -13,7 +13,7 @@ module.exports = {
             .setTitle('<:load:782586939705393193>・Ajout d\'un salon')
             .setColor('#2f3136')
             .setDescription('Hey ! Bienvenue dans le menu de suppression d\'un salon publicitaire. Pour supprimer le salon souhaité, envoyer ci-dessous la mention du salon voulu.\n\n*`Si vous souhaitez quittez, écrivez cancel à la place.`*')
-            .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
     )
 
     let error = false;
@@ -32,7 +32,7 @@ module.exports = {
             .setTitle('<:erreur:793859889444945970>・Erreur...')
             .setColor('#2f3136')
             .setDescription("Vous n'avez pas entrer de salon. Annulation...")
-            .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
         );
         return;
     });
@@ -48,7 +48,7 @@ module.exports = {
                 .setTitle('<:erreur:793859889444945970>・Erreur...')
                 .setColor('#2f3136')
                 .setDescription('Oops, on dirait que ce salon est introuvable. Assurez vous que je puisse voir le salon, ainsi que je puisse écrire dedans.')
-                .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
         )
     }
 
@@ -61,7 +61,7 @@ module.exports = {
                 .setTitle('<:erreur:793859889444945970>・Erreur...')
                 .setColor('#2f3136')
                 .setDescription('Ce salon n\'est pas défini en tant que salon publicitaire.')
-                .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
         )
     }
 
@@ -71,7 +71,7 @@ module.exports = {
             .setTitle('<a:fleche:782582461510582312>・Succès')
             .setColor('#2f3136')
             .setDescription('Le salon <#' + salon.id + '> à correctement été supprimé !')
-            .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
     )
 
     // Fonctions
