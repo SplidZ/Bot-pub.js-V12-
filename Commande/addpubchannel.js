@@ -13,7 +13,7 @@ module.exports = {
                 .setTitle(':hourglass:・Ajout d\'un salon')
                 .setColor('#2f3136')
                 .setDescription('Hey ! Bienvenue dans le menu d\'ajout d\'un salon publicitaire. Pour ajouté le salon souhaité, envoyer ci-dessous la mention du salon voulu.\n\n*`Si vous souhaitez quittez, écrivez cancel à la place.`*')
-                .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter('๖̶ζ͜͡AD MEGHOST#5492/Shoguntoto (ショグントト)#1376')
         )
     
     let error = false;
@@ -86,7 +86,7 @@ module.exports = {
             }
             server[serverID][channelID].messageEmbed = {
                 description: `**__:mag_right: | Pour éviter que ta publicité ne soit refusée :__**\n*➜ Votre publicité doit avoir une description minimum !\n➜ Merci de respecter les TOS et le règlement !*`,
-                footer: '๖̶ζ͜͡AD MEGHOST#5492'
+                footer: '๖̶ζ͜͡AD MEGHOST#5492/Shoguntoto (ショグントト)#1376'
             }
         }
         fs.writeFile(path.resolve(path.join('./database/main.json')), JSON.stringify(server, null, 2), (err) => {
