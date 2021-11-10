@@ -15,7 +15,7 @@ module.exports = {
                 .setTitle('<:load:782586939705393193>・Salons de publicité')
                 .setColor('#2f3136')
                 .setDescription(texte + '\n\nPour en ajouter, faites ``&addpubchannel`` et pour en enlever, ``&removepubchannel``.')
-                .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter(' Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
         )
     } else if(args[0]){
         let salon = message.mentions.channels.first();
@@ -32,7 +32,7 @@ module.exports = {
                     .setTitle('<:load:782586939705393193>・Informations sur un salon de publicité')
                     .setColor('#2f3136')
                     .setDescription(texte + `\n> **Slowmode**: ${channel.slowmode}\n> **Rôle ignorés:** ${bypassRole}\n> **Messages:**\n> ・**Description** \n\`\`\`${channel.messageEmbed.description}\`\`\`\n> ・**Couleur:** ${channel.color}\n> ・**Footer:** ${channel.messageEmbed.footer}`)
-                    .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                    .setFooter(' Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
             )
         } else {
             return message.channel.send(
@@ -40,7 +40,7 @@ module.exports = {
                     .setTitle('<:erreur:793859889444945970>・Erreur...')
                     .setColor('#2f3136')
                     .setDescription('Ce salon est introuvable. Assurez vous que j\'y ai bien accès.')
-                    .setFooter('๖̶ζ͜͡AD MEGHOST#5492')
+                    .setFooter('๖̶ Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
                 )
         }
         
