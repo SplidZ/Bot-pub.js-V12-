@@ -193,5 +193,20 @@ module.exports = {
                     });
                     return;
             }
-        }
-    }}
+            
+    
+const channels = ["id salon pub 1", "id salon 2", "id salon3 ..."];
+
+    if (message.author.bot) return;
+    if (!message.guild) return;
+
+    if (channels.includes(message.channel.id)) {
+        message.channel.messages.fetch().then(async m => {
+            let msg = m.filter(e => e.author.id === client.user.id).first();
+            if (msg) await msg.delete().catch(e => { return; });
+            return message.channel.send({ embed: { color: 0x2f3136, title: message.guild.name, image: { url: '' }, description: "**<:fleche:908361943482499092> Votre publicité doit respecter les TOS de Discord.\n<:fleche:908361943482499092> Si vous quittez le serveur, vos publicités seront automatiquement supprimées.**" }})
+        })
+        
+    }
+    
+}}};
