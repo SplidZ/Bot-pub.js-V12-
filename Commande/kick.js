@@ -24,8 +24,8 @@ module.exports = {
          let embed = new discord.MessageEmbed()
     .setTitle("Kick !")
     .setDescription(`Membre kick : ${target} (${target.id})`)
-    .setColor("#ff2050")
-    .setFooter(`kick par ${message.author.username} commande par : Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492`);
+    .setColor("GREEN")
+    .setFooter(`Par ${message.author.username}`);
     
     message.channel.send(embed)
     
