@@ -8,7 +8,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setThumbnail(client.user.displayAvatarURL())
             .setTitle(`Info de ${client.user.username}`)
-            .setColor('8B008B')
+            .setColor('GREEN')
             .addFields(
                 {
                     name: ':crown: Créateur :',
