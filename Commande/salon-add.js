@@ -11,9 +11,9 @@ module.exports = {
         let addPubChannelMessageEmbed = await message.channel.send(
             new Discord.MessageEmbed()
                 .setTitle(':hourglass:・Ajout d\'un salon')
-                .setColor('#2f3136')
-                .setDescription('Hey ! Bienvenue dans le menu d\'ajout d\'un salon publicitaire. Pour ajouté le salon souhaité, envoyer ci-dessous la mention du salon voulu.\n\n*`Si vous souhaitez quittez, écrivez cancel à la place.`*')
-                .setFooter('๖̶ζ͜͡AD MEGHOST#5492/Shoguntoto (ショグントト)#1376')
+                .setColor('GREEN')
+                .setDescription('Bienvenue dans le menu d\'ajout d\'un salon publicitaire.\n\n*`Si vous souhaitez quittez, écrivez cancel à la place.`*')
+                .setFooter(`${client.user.username}`)
         )
     
     let error = false;
@@ -30,15 +30,15 @@ module.exports = {
         addPubChannelMessageEmbed.edit(
             new Discord.MessageEmbed()
             .setTitle(':x:・Erreur...')
-            .setColor('#2f3136')
-            .setDescription("Vous n'avez pas entrer de salon. Annulation...")
+            .setColor('GREEN')
+            .setDescription("Vous n'avez pas entrer de salon.")
             .setTimestamp()
         );
         return;
     });
     channel = channel.replace('<', '').replace('#', '').replace('>', '');
     if(channel === 'cancel'){
-        return message.channel.send('Annulation...');
+        return message.channel.send('Annulation ⌛').then((message)=>{message.delete({timeout:20})}).then(message.channel.send(`Annulation avec succès :white_check_mark:`))
     }
     if(error) return;
     let salon = message.guild.channels.cache.find(c => c.id === channel);
@@ -46,8 +46,8 @@ module.exports = {
         return addPubChannelMessageEmbed.edit(
             new Discord.MessageEmbed()
                 .setTitle(':x:・Erreur...')
-                .setColor('#2f3136')
-                .setDescription('Oops, on dirait que ce salon est introuvable. Assurez vous que je puisse voir le salon, ainsi que je puisse écrire dedans.')
+                .setColor('GREEN')
+                .setDescription('Ce salon est introuvable.')
                 .setTimestamp()
         )
     }
@@ -56,7 +56,7 @@ module.exports = {
     addPubChannelMessageEmbed.edit(
         new Discord.MessageEmbed()
             .setTitle(':white_check_mark:・Succès')
-            .setColor('#2f3136')
+            .setColor('GREEN')
             .setDescription('Le salon <#' + salon.id + '> à correctement été ajouté !')
             .setTimestamp()
     )
@@ -79,14 +79,7 @@ module.exports = {
     
         if(!channel){
             server[serverID][channelID] = {
-                slowmode: '',
-                color: '#2f3136',
-                bypassRole: 'Aucun',
                 lastMessageID: 'Aucun'
-            }
-            server[serverID][channelID].messageEmbed = {
-                description: `**__:mag_right: | Pour éviter que ta publicité ne soit refusée :__**\n*➜ Votre publicité doit avoir une description minimum !\n➜ Merci de respecter les TOS et le règlement !*`,
-                footer: '๖̶ζ͜͡AD MEGHOST#5492/Shoguntoto (ショグントト)#1376'
             }
         }
         fs.writeFile(path.resolve(path.join('./database/main.json')), JSON.stringify(server, null, 2), (err) => {
