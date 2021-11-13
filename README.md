@@ -8,4 +8,4 @@ Avec ๖̶ζ͜͡AD MEGHOST nous avons crée ce bot de vérification publicitaire
 4. Une fois que tous les modules sont installés, aller dans le config.json et mettez votre token ligne 2 trouvable sur https://discord.com/developers/applications/
 5. Faites maintenant dans le terminal `node .` et voilà ! Votre bot est connecté !
 
-Une question ? Un problème ? Rejoignez le serveur discord suivant : https://discord.gg/PXEKeYqb.
+Une question ? Un problème ? Rejoignez le serveur discord suivant : https://discord.gg/qa664p7S
