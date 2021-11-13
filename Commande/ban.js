@@ -12,8 +12,8 @@ module.exports = {
         let embed = new discord.MessageEmbed()
     .setTitle("Ban !")
     .setDescription(`Membre banni : ${utilisateur} (${utilisateur.id})`)
-    .setColor("#ff2050")
-    .setFooter(`Banni par ${message.author.username} commande crée par : Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492`);
+    .setColor("GREEN")
+    .setFooter(`Par ${message.author.username}`);
    
     message.channel.send(embed)
     }};
