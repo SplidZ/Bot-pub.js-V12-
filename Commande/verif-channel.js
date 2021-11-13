@@ -10,10 +10,10 @@ module.exports = {
 
     let removePubChannelMessageEmbed = await message.channel.send(
         new Discord.MessageEmbed()
-            .setTitle('Ajout d\'un salon')
-            .setColor('#2f3136')
+            .setTitle(':hourglass: Ajout d\'un salon')
+            .setColor('GREEN')
             .setDescription('Hey ! Bienvenue dans le menu de setup du salon de vérification des publicité. Envoyer ci-dessous la mention du salon voulu.\n\n*`Si vous souhaitez quittez, écrivez cancel à la place.`*')
-            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter(`${client.user.username}`)
     )
 
     let error = false;
@@ -29,26 +29,26 @@ module.exports = {
         error = true;
         removePubChannelMessageEmbed.edit(
             new Discord.MessageEmbed()
-            .setTitle('<:erreur:793859889444945970>・Erreur...')
-            .setColor('#2f3136')
-            .setDescription("Vous n'avez pas entrer de salon. Annulation...")
-            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
+            .setTitle(':x:・Erreur...')
+            .setColor('GREEN')
+            .setDescription("Vous n'avez pas entrer de salon.")
+            .setFooter(`${client.user.username}`)
         );
         return;
     });
     channel = channel.replace('<', '').replace('#', '').replace('>', '');
     if(channel === 'cancel'){
-        return message.channel.send('Annulation...');
+        return message.channel.send('Annulation ⌛').then((message)=>{message.delete({timeout:20})}).then(message.channel.send(`Annulation avec succès :white_check_mark:`))
     }
     if(error) return;
     let salon = message.guild.channels.cache.find(c => c.id === channel);
     if(!salon){
         return removePubChannelMessageEmbed.edit(
             new Discord.MessageEmbed()
-                .setTitle('<:erreur:793859889444945970>・Erreur...')
-                .setColor('#2f3136')
+                .setTitle(':x:・Erreur...')
+                .setColor('GREEN')
                 .setDescription('Oops, on dirait que ce salon est introuvable. Assurez vous que je puisse voir le salon, ainsi que je puisse écrire dedans.')
-                .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter(`${client.user.username}`)
         )
     }
 
@@ -63,23 +63,23 @@ module.exports = {
     if(ch){
         return removePubChannelMessageEmbed.edit(
             new Discord.MessageEmbed()
-                .setTitle('<:erreur:793859889444945970>・Erreur...')
-                .setColor('#2f3136')
+                .setTitle(':x:・Erreur...')
+                .setColor('GREEN')
                 .setDescription('Ce salon ne peut pas être un salon publicitaire et un salon de pub en même temps.')
-                .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
+                .setFooter(`${client.user.username}`)
         )
     }
 
     setverifchannel(message.guild.id, salon.id);
     removePubChannelMessageEmbed.edit(
         new Discord.MessageEmbed()
-            .setTitle('<a:fleche:782582461510582312>・Succès')
-            .setColor('#2f3136')
+            .setTitle('✅・Succès')
+            .setColor('GREEN')
             .setDescription('Le salon de vérification des publicité est désormais <#' + salon.id + '>')
-            .setFooter('Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492')
+            .setFooter(`${client.user.username}`)
     )
-    salon.send(`**__Hey !__**\n\nVoici le salon de vérification des publicités. Pour vérifier une publicité, suivez le parterne de réaction ci-dessous.\n\n> \`✅\`・Accepter la publicité\n> \`❌\`・Refuser la publicité pour les raison suivantes :\n\n> \`1️⃣\`・**Contenue à caractère pornographique**\n> \`2️⃣\`・**Publicité pour un serveur invite reward.**\n> \`3️⃣\`・**Contenue à caractère raciste, haineux ou autre.**\n> \`4️⃣\`・**Lien d'invitation invalide.**\n> \`5️⃣\`・**Pub dans le mauvais salon.**\n> \`6️⃣\`・**Publicité sans description**\n> \`📛\`・**Mettre sa propre raison** *(Il faut avoir les mp ouverts)*\n\n:warning:・Si le bot ne met pas les réactions, c'est qu'il se fait rate limited *(Il en a mit trop)*. Vous devrez donc les ajouter à la main, mais pas d'inquiétude, ça marche pareil. Quand ça arrive, ça dure quelques dizaines de minutes.`)
-
+    salon.send({embed : {color : "GREEN", title: `Salon de verification publicitaire`, description:`**__Voici les options de verification publicitaire :__**\n\n> :white_check_mark:・Validé la publicité.\n> :x:・Refusé la publicité.\n\n**__Liste des refus :__**\n\n> :one:・Contenue à caractère pornographique.\n> :two:・Publicité pour un serveur invite reward.\n> :three:・Contenue à caractère raciste, haineux ou autre.\n> :four:・Lien d'invitation invalide.\n> :five:・Pub dans le mauvais salon.\n> :six:・Publicité sans description.\n> :pencil2:・Mettre sa propre raison.`}})
+    
     // Fonctions
 
     async function setverifchannel(serverID, channelID) {
