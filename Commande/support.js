@@ -7,7 +7,7 @@ module.exports = {
         let help = new Discord.MessageEmbed()
         .setColor(`GREEN`)
         .setTitle(`Support de ${client.user.username}`)
-        .setDescription(`**Voici le lien du support de ${client.user.username}**\n➜ [Cliquez ici](https://discord.gg/DU75nykhBG)`)
+        .setDescription(`**Voici le lien du support de ${client.user.username}**\n➜ [Cliquez ici](https://discord.gg/Xjf5mE4PPn)`)
 
     return message.channel.send(help)
     }}
