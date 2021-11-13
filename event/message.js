@@ -19,7 +19,7 @@ module.exports = {
                 command.run(message, args, client)
                 
                 } catch (error) {
-                     message.channel.send('**Je suis désoler mais il y à eu une erreur durant l\'execution du code**')
+                     message.channel.send('**:x: Je suis désoler mais il y à eu une erreur durant l\'execution du code By ๖̶ζ͜͡AD MEGHOST et Shoguntoto (ショグントト)**')
                 };
             }
         }
