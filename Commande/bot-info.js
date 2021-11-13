@@ -12,7 +12,7 @@ module.exports = {
             .addFields(
                 {
                     name: ':crown: Créateur :',
-                    value: ` Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492`,
+                    value: ` Shoguntoto (ショグントト)#1376 & ๖̶ζ͜͡AD MEGHOST#5492\nShoguntoto (ショグントト) | 418384254712676354`,
                     inline: false
                 },
                 {
