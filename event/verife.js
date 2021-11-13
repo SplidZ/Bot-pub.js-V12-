@@ -6,7 +6,7 @@ const ms = require('ms')
 
 module.exports = {
     name: 'message',
-    async execute(client, message) {
+    async execute(client, message, args) {
 
     if (message.channel.type === 'dm') return;
     if(message.author.bot) { return; }
@@ -17,10 +17,10 @@ module.exports = {
             if(config[message.guild.id][message.channel.id]){
                 let messages = require(path.resolve(path.join('./database/messages.json')));
                 if(!messages[message.channel.id]){
-                    messages[message.channel.id] = {
-                        
+                    messages[message.channel.id] = {   
                     }
                 }
+                
                 if(!messages[message.channel.id][message.author.id]){
                     messages[message.channel.id][message.author.id] = {
                         lastMessageDate: new Date()
@@ -35,7 +35,7 @@ module.exports = {
                     if(!verifchannel[message.guild.id]) return;
                     let channel = client.channels.cache.find(c => c.id === verifchannel[message.guild.id].verifChannel);
                 
-                    let messagemsg = await  channel.send({embed : {color : "GREEN", title: `Publicité en attente`, description:`───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n───────────────────────────`}})
+                    let messagemsg = await  channel.send({embed : {color : "GREEN", title: `Publicité en attente`, description:`───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n───────────────────────────\n[Lien du message](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`}})
                     messagemsg.react('✅');
                     messagemsg.react('❌');
 
@@ -56,9 +56,9 @@ module.exports = {
                             messagemsg.react('4️⃣');
                             messagemsg.react('5️⃣');
                             messagemsg.react('6️⃣');
-                            messagemsg.react('📛');
+                            messagemsg.react('✏️');
                             const filter = (reaction, user) => {
-                                return ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '📛'].includes(reaction.emoji.name) && user.id != client.user.id;
+                                return ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '✏️'].includes(reaction.emoji.name) && user.id != client.user.id;
                             };
                             messagemsg.awaitReactions(filter, { max: 1, time: 21600000, errors: ['time'] }).then(async (collected) => {
                                 reaction = collected.first();
@@ -76,14 +76,14 @@ module.exports = {
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Pub dans le mauvais salon.``')
                                 } else if(reaction.emoji.name === '6️⃣'){
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Publicité sans description.``')
-                                } else if(reaction.emoji.name === '📛'){
+                                } else if(reaction.emoji.name === '✏️'){
                                     let user = reaction.users.cache.last();
                                     await user.send(
                                       new Discord.MessageEmbed()
                                         .setTitle(`__RAISON__`)
-                                        .setColor('ORANGE')
+                                        .setColor('GREEN')
                                         .setDescription("Vous avez choisis de mettre vôtre propre raison de suppressions. Veuillez l'entrer ci-dessous.")
-                                        .setFooter('Waiting for reason')
+                                        .setFooter('En attente de raison')
                                     )
                                     let channel = user.dmChannel;
                                     if (!channel) channel = await user.createDM();
@@ -120,7 +120,7 @@ module.exports = {
                     if(!verifchannel[message.guild.id]) return;
                     let channel = client.channels.cache.find(c => c.id === verifchannel[message.guild.id].verifChannel);
                 
-                    let messagemsg = await  channel.send({embed : {color : "GREEN", title: `Publicité en attente`, description:`───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n───────────────────────────`}})
+                    let messagemsg = await  channel.send({embed : {color : "GREEN", title: `Publicité en attente`, description:`───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n───────────────────────────\n[Lien du message](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`}})
                     messagemsg.react('✅');
                     messagemsg.react('❌');
 
@@ -141,9 +141,9 @@ module.exports = {
                             messagemsg.react('4️⃣');
                             messagemsg.react('5️⃣');
                             messagemsg.react('6️⃣');
-                            messagemsg.react('📛');
+                            messagemsg.react('✏️');
                             const filter = (reaction, user) => {
-                                return ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '📛'].includes(reaction.emoji.name) && user.id != client.user.id;
+                                return ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '✏️'].includes(reaction.emoji.name) && user.id != client.user.id;
                             };
                             messagemsg.awaitReactions(filter, { max: 1, time: 21600000, errors: ['time'] }).then(async (collected) => {
                                 reaction = collected.first();
@@ -161,14 +161,14 @@ module.exports = {
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Pub dans le mauvais salon.``')
                                 } else if(reaction.emoji.name === '6️⃣'){
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Publicité sans description.``')
-                                } else if(reaction.emoji.name === '📛'){
+                                } else if(reaction.emoji.name === '✏️'){
                                     let user = reaction.users.cache.last();
                                     await user.send(
                                       new Discord.MessageEmbed()
                                         .setTitle(`__RAISON__`)
-                                        .setColor('ORANGE')
+                                        .setColor('GREEN')
                                         .setDescription("Vous avez choisis de mettre vôtre propre raison de suppressions. Veuillez l'entrer ci-dessous.")
-                                        .setFooter('Waiting for reason')
+                                        .setFooter('En attente de raison')
                                     )
                                     let channel = user.dmChannel;
                                     if (!channel) channel = await user.createDM();
@@ -193,20 +193,5 @@ module.exports = {
                     });
                     return;
             }
-            
-    
-const channels = ["id salon pub 1", "id salon 2", "id salon3 ..."];
-
-    if (message.author.bot) return;
-    if (!message.guild) return;
-
-    if (channels.includes(message.channel.id)) {
-        message.channel.messages.fetch().then(async m => {
-            let msg = m.filter(e => e.author.id === client.user.id).first();
-            if (msg) await msg.delete().catch(e => { return; });
-            return message.channel.send({ embed: { color: 0x2f3136, title: message.guild.name, image: { url: '' }, description: "**<:fleche:908361943482499092> Votre publicité doit respecter les TOS de Discord.\n<:fleche:908361943482499092> Si vous quittez le serveur, vos publicités seront automatiquement supprimées.**" }})
-        })
-        
-    }
-    
-}}};
+        }
+    }}
