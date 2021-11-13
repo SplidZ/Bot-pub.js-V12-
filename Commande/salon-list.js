@@ -14,7 +14,7 @@ module.exports = {
             new Discord.MessageEmbed()
                 .setTitle('📃・Salons de publicité')
                 .setColor('GREEN')
-                .setDescription(texte + '\n\nPour en ajouter, faites ``q!salon-add`` et pour en enlever, ``q!salon-remove``.')
+                .setDescription(texte + '\n\nPour en ajouter, faites ``=salon-add`` et pour en enlever, ``=salon-remove``.')
                 .setFooter(`${client.user.username}`)
         )
         
