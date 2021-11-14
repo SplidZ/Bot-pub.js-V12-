@@ -38,6 +38,7 @@ module.exports = {
                     let messagemsg = await  channel.send({embed : {color : "GREEN", title: `Publicité en attente`, description:`───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n───────────────────────────\n[Lien du message](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`}})
                     messagemsg.react('✅');
                     messagemsg.react('❌');
+                    messagemsg.react('🗑️');
 
                     const filtre = (reaction, user) => {
                         return ['✅', '❌'].includes(reaction.emoji.name) && user.id != client.user.id;
@@ -47,6 +48,18 @@ module.exports = {
                         let reaction = collected.first();
                         if (reaction.emoji.name === '✅') {
                             messagemsg.delete();
+
+                            let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                            if(!logschannel[message.guild.id]) return;
+                            let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                        
+                            let logs = channel.send({embed : {color : "GREEN", title: `Publicité valider`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n\n[Lien du message](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
+                            return;
+                        }
+                        if (reaction.emoji.name === '🗑️') {
+                            message.delete();
+                            messagemsg.delete();
+
                             return;
                         } else if(reaction.emoji.name === '❌'){
                             messagemsg.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
@@ -66,24 +79,59 @@ module.exports = {
                                 messagemsg.delete();
                                 if (reaction.emoji.name === '1️⃣') {
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Contenue à caractère pornographique.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Contenue à caractère pornographique.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '2️⃣'){
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Publicité pour un serveur invite reward.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Publicité pour un serveur invite reward.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '3️⃣') {
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Contenue à caractère raciste, haineux ou autre.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Contenue à caractère raciste, haineux ou autre.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '4️⃣'){
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Lien d\'invitation invalide.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Lien d\'invitation invalide.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '5️⃣'){
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Pub dans le mauvais salon.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Pub dans le mauvais salon.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '6️⃣'){
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Publicité sans description.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Publicité sans description.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '✏️'){
                                     let user = reaction.users.cache.last();
                                     await user.send(
                                       new Discord.MessageEmbed()
-                                        .setTitle(`__RAISON__`)
-                                        .setColor('GREEN')
+                                        .setTitle(`WARN`)
+                                        .setColor('RED')
                                         .setDescription("Vous avez choisis de mettre vôtre propre raison de suppressions. Veuillez l'entrer ci-dessous.")
-                                        .setFooter('En attente de raison')
                                     )
                                     let channel = user.dmChannel;
                                     if (!channel) channel = await user.createDM();
@@ -91,6 +139,12 @@ module.exports = {
                                     channel.awaitMessages(filterCustomReason, { max: 1, time: 10000, errors: ['time'] }).then((collected => {
                                       message.author.send(`Vôtre publicité à été refusée. Raison: \`${collected.first().content}\``)
                                       user.send(`La publicité de **${message.author.tag}** a bien été supprimée.`)
+
+                                      let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                      if(!logschannel[message.guild.id]) return;
+                                      let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                  
+                                      let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : ${collected.first().content}\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                     })).catch(collected => {
                                       console.log(collected)
                                     })
@@ -123,16 +177,29 @@ module.exports = {
                     let messagemsg = await  channel.send({embed : {color : "GREEN", title: `Publicité en attente`, description:`───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n───────────────────────────\n[Lien du message](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`}})
                     messagemsg.react('✅');
                     messagemsg.react('❌');
+                    messagemsg.react('🗑️');
 
                     const filtre = (reaction, user) => {
-                        return ['✅', '❌'].includes(reaction.emoji.name) && user.id != client.user.id;
+                        return ['✅', '❌', '🗑️'].includes(reaction.emoji.name) && user.id != client.user.id;
                     };
 
                     messagemsg.awaitReactions(filtre, { max: 1, time: 21600000, errors: ['time'] }).then(collected => {
                         let reaction = collected.first();
                         if (reaction.emoji.name === '✅') {
                             messagemsg.delete();
+
+                            let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                            if(!logschannel[message.guild.id]) return;
+                            let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                        
+                            let logs = channel.send({embed : {color : "GREEN", title: `Publicité valider`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\n\n[Lien du message](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                             return;
+                        }
+                            if (reaction.emoji.name === '🗑️') {
+                                message.delete();
+                                messagemsg.delete();
+
+                                return;
                         } else if(reaction.emoji.name === '❌'){
                             messagemsg.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
                             messagemsg.react('1️⃣');
@@ -151,24 +218,59 @@ module.exports = {
                                 messagemsg.delete();
                                 if (reaction.emoji.name === '1️⃣') {
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Contenue à caractère pornographique.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Contenue à caractère pornographique.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '2️⃣'){
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Publicité pour un serveur invite reward.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Publicité pour un serveur invite reward.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '3️⃣') {
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Contenue à caractère raciste, haineux ou autre.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Contenue à caractère raciste, haineux ou autre.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '4️⃣'){
                                     message.author.send('Vôtre publicité a été refusée. Raison: ``Lien d\'invitation invalide.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Lien d\'invitation invalide.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '5️⃣'){
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Pub dans le mauvais salon.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Pub dans le mauvais salon.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '6️⃣'){
                                     message.author.send('Vôtre publicité à été refusée. Raison: ``Publicité sans description.``')
+
+                                    let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                    if(!logschannel[message.guild.id]) return;
+                                    let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                
+                                    let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : Publicité sans description.\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                 } else if(reaction.emoji.name === '✏️'){
                                     let user = reaction.users.cache.last();
                                     await user.send(
                                       new Discord.MessageEmbed()
-                                        .setTitle(`__RAISON__`)
-                                        .setColor('GREEN')
+                                        .setTitle(`WARN`)
+                                        .setColor('RED')
                                         .setDescription("Vous avez choisis de mettre vôtre propre raison de suppressions. Veuillez l'entrer ci-dessous.")
-                                        .setFooter('En attente de raison')
                                     )
                                     let channel = user.dmChannel;
                                     if (!channel) channel = await user.createDM();
@@ -176,6 +278,12 @@ module.exports = {
                                     channel.awaitMessages(filterCustomReason, { max: 1, time: 10000, errors: ['time'] }).then((collected => {
                                       message.author.send(`Vôtre publicité à été refusée. Raison: \`${collected.first().content}\``)
                                       user.send(`La publicité de **${message.author.tag}** a bien été supprimée.`)
+
+                                      let logschannel = require(path.resolve(path.join('./database/logs.json')));
+                                      if(!logschannel[message.guild.id]) return;
+                                      let channel = client.channels.cache.find(c => c.id === logschannel[message.guild.id].logsChannel);
+                                  
+                                      let logs = channel.send({embed : {color : "RED", title: `Publicité refusé`, description:`───────────────────────────\n**Informations Publicitaires :**\nUtilisateur : ${message.author} | \`${message.author.tag}\`\nID : \`${message.author.id}\`\nSalon : <#${message.channel.id}>\nRaison : ${collected.first().content}\n\n───────────────────────────\n**Contenu de la publicité : :arrow_heading_down:**\n───────────────────────────\n\n${message}\n\n───────────────────────────`}})
                                     })).catch(collected => {
                                       console.log(collected)
                                     })
