@@ -78,7 +78,7 @@ module.exports = {
             .setDescription('Le salon de vérification des publicité est désormais <#' + salon.id + '>')
             .setFooter(`${client.user.username}`)
     )
-    salon.send({embed : {color : "GREEN", title: `Salon de verification publicitaire`, description:`**__Voici les options de verification publicitaire :__**\n\n> :white_check_mark:・Validé la publicité.\n> :x:・Refusé la publicité.\n\n**__Liste des refus :__**\n\n> :one:・Contenue à caractère pornographique.\n> :two:・Publicité pour un serveur invite reward.\n> :three:・Contenue à caractère raciste, haineux ou autre.\n> :four:・Lien d'invitation invalide.\n> :five:・Pub dans le mauvais salon.\n> :six:・Publicité sans description.\n> :pencil2:・Mettre sa propre raison.`}})
+     salon.send({embed : {color : "GREEN", title: `Salon de verification publicitaire`, description:`**__Voici les options de verification publicitaire :__**\n\n> :white_check_mark:・Validé la publicité.\n> :x:・Refusé la publicité.\n> :wastebasket:・Supprimé la publicité sans warn.\n\n**__Liste des refus :__**\n\n> :one:・Contenue à caractère pornographique.\n> :two:・Publicité pour un serveur invite reward.\n> :three:・Contenue à caractère raciste, haineux ou autre.\n> :four:・Lien d'invitation invalide.\n> :five:・Pub dans le mauvais salon.\n> :six:・Publicité sans description.\n> :pencil2:・Mettre sa propre raison.`}})
     
     // Fonctions
 
