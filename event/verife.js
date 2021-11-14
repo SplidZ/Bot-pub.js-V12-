@@ -41,7 +41,7 @@ module.exports = {
                     messagemsg.react('🗑️');
 
                     const filtre = (reaction, user) => {
-                        return ['✅', '❌'].includes(reaction.emoji.name) && user.id != client.user.id;
+                        return ['✅', '❌', '🗑️'].includes(reaction.emoji.name) && user.id != client.user.id;
                     };
 
                     messagemsg.awaitReactions(filtre, { max: 1, time: 21600000, errors: ['time'] }).then(collected => {
